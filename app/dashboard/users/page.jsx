@@ -8,10 +8,10 @@ import { deleteUser } from '@/app/lib/actions'
 
 const UsersPage = async ({searchParams}) => {
 
-   const q = searchParams?.query || "";
-   const users = await fetchUsers(q);
+   const q = searchParams?.q || "";
+   const page = searchParams?.page || 1;
+   const {count, users} = await fetchUsers(q, page);
 
-    console.log(users)
     return(
         <div className={styles.container}>
             <div className={styles.top}>
@@ -61,7 +61,7 @@ const UsersPage = async ({searchParams}) => {
                     ))}                                         
                 </tbody>
             </table>
-            <Pagination />
+            <Pagination count={count} />
         </div>
     )
 }
