@@ -6,8 +6,10 @@ import Pagination from '@/app/ui/dashboard/pagination/pagination'
 import { fetchUsers } from '@/app/lib/data'
 import { deleteUser } from '@/app/lib/actions'
 
-const UsersPage = async () => {
-   const users = await fetchUsers();
+const UsersPage = async ({searchParams}) => {
+
+   const q = searchParams?.query || "";
+   const users = await fetchUsers(q);
 
     console.log(users)
     return(
